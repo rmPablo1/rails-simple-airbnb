@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="container col-12 ms-5 mt-2">
+    <h1>All our Flats (<%= @flats.length %>)</h1>
+    <div class="col-sm-12 col-md-12">
+      <ul class= "d-flex flex-wrap d-block">
+        <% @flats.each do |flat| %>
+          <li class="col-sm-12 col-md-4 border d-flex flex-column justify-content-between w-25 mx-3 mb-3  bg-secondary bg-opacity-25">
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200" alt="flat-image">
+          <div class="d-flex flex-column mx-3 my-3 p-2">
+            <h3><%= flat.name %></h3>
+            <%= flat.address %>
+            <div class="flex-row gap-1">
+              <i class="fa-sharp fa-solid fa-users me-1"></i><%= flat.number_of_guests  %>
+              <i class="fa-solid fa-euro-sign me-1 ms-2"></i><%= flat.price_per_night %>
+            </div>
+          </div>
+            <div class="bg-white p-2 d-flex ">
+              <%= link_to("More info", flat_path(flat), class: "text-decoration-none me-2") %>
+              <%= link_to("Edit", edit_flat_path(flat), class: "text-decoration-none me-2 text-warning") %>
+              <%= link_to("Delete", flat_path(flat),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none text-danger") %>
+            </div>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
